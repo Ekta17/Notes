@@ -18,11 +18,22 @@
 
 - Given an array and the '_d_' which is number of time the array needs to be rotated. 
 - Using reversal of the array we can achieve this. 
-- Divide the array into two parts: 
-    - the array from 0-(d-1)
-    - the array from d-(n-1)
-- reverse both the arrays 
-- now reverse the array which you got from the previous step. 
+
+1. **Rotations to Right**: [1,2,3,4], d = 1 --> [4,1,2,3]
+    - Divide the array into two parts and reverse each part: 
+    - reverse the array from 0 to (d-1)
+    - reverse the array from d to (n-1)
+    - now reverse the whole array
+
+2. **Rotations to Left**: [1,2,3,4], d = 1 --> [2,3,4,1]
+    - Reverse the whole array
+    - Divide the array into two parts and reverse each part:
+    - reverse the array from 0 to (d-1)
+    - reverse the array from d to (n-1)
+    
+Note: Before performing any type of rotation, initialize **d %= array.length** 
+        to handle the case where length of array is less than d    
+
 - Time Complexity: O(n)
 - Space Complexity: O(1)
 
