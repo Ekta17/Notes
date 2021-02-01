@@ -9,7 +9,7 @@
   is less then end pointer value.
 - Time Complexity: O(n)
 - Space complexity: O(1)  
-- **Note**: to compare two array values: **_assertArraysEquals(int[] expected, int[] actual)_**
+- **Note**: to compare two array values: **_assertArrayEquals(int[] expected, int[] actual)_**
 
 **Code:** https://github.com/Ekta17/DataStructureAndAlgorithms/blob/main/src/main/java/arrays/ReverseArray.java
 
@@ -44,11 +44,41 @@
 
 ### **Best time to buy and sell stock**
  
-- question: https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
+1) https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
+   - You want to maximize your profit by choosing a single day to buy one stock 
+     and choosing a different day in the future to sell that stock. 
+   - Return the maximum profit you can achieve from this transaction. 
+     If you cannot achieve any profit, return 0.
+   - Since you can buy on one day and sell on another day, 
+     i.e. only one transaction is allowed. create a variable to set buyPrice
+   - If current element's value is less than buyPrice, update buyPrice as current Price. 
+   - else calculate current Profit --> currentPrice[i] - buyPrice, and then update 
+      max profit by comparing current value of maxProfit with currentProfit.
+
+2) https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/
+    - In this question, we need to find maxProfit no matter how many times we do the 
+      transaction i.e. buy and sell any number of times.
+    - Here we need to find localMinima and localMaxima.
+    - set localMinimaIndex = 0
+    - iterate through the price array starting from position 1
+      - if current price is less than previous element's price, then update localMinimaIndex as current index. 
+      - find localMaxima such that --> previous element <= current Element > next element. 
+      - if you find localMaxima, add to maxProfit.
+  
 - Time Complexity: O(n)
 - Space Complexity: O(1)
 
 **Code:** https://github.com/Ekta17/DataStructureAndAlgorithms/blob/main/src/main/java/arrays/BuyAndSellStock.java
+
+### **Remove duplicates from sorted array**
+
+- question: https://leetcode.com/explore/featured/card/top-interview-questions-easy/92/array/727/
+- Time Complexity: O(n)
+- Space Complexity: O(1)
+
+**Code:** https://github.com/Ekta17/DataStructureAndAlgorithms/blob/main/src/main/java/arrays/RemoveDuplicatesFromSortedArray.java
+
+
 
 
 
