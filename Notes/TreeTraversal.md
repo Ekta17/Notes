@@ -13,6 +13,20 @@
   (queue not empty), first fetch the size of current queue and 
   then while visiting the front of the queue, you need to visit only 
   current size number of elements from the queue.
+  
+#### **Spiral Traversal of Binary Tree**
+
+- Find the height of the tree to know how many levels you need to traverse. 
+- Create a variable to flip between each level to traverse from left to right and right to left. 
+- iterate through each level: 
+  - check if the root is null --> do nothing
+  - if level is 1 (iterating through root of the tree) --> add to list of nodes
+  - if level greater than 1 --> 
+    - check if flip variable is set to traverse from: 
+      - left to right --> traverse left subtree before right subtree. 
+      - right to left --> traverse right subtree before left subtree.
+- In each level traversal keep flipping left to right variable to get spiral traversal.
+
 
 ### Depth First Traversal
 
