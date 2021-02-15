@@ -104,6 +104,17 @@ Note: Before performing any type of rotation, initialize **d %= array.length**
         prefixSum[2] = prefixSum[1] + arr[2] = 40 and so on.
 - https://www.geeksforgeeks.org/prefix-sum-array-implementation-applications-competitive-programming/?ref=leftbar-rightbar
 
+### **Merge two sorted arrays**
+
+- question: https://leetcode.com/explore/learn/card/fun-with-arrays/525/inserting-items-into-an-array/3253/
+- When arrays require inplace operation or moving the elements to the right, try to look for solutions
+  where you can iterate the array from the end instead of starting.
+- In this question, its easy to compare elements from the end and instead of looking for smaller element
+  we look for greater element and then insert it into final array. 
+- Time Complexity: O(n)
+- Space Complexity: O(1)
+
+**Code:** https://github.com/Ekta17/DataStructureAndAlgorithms/blob/main/src/main/java/arrays/MergeTwoSortedArray.java
 
 
 
