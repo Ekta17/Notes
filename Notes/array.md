@@ -107,17 +107,56 @@ Note: Before performing any type of rotation, initialize **d %= array.length**
 ### **Merge two sorted arrays**
 
 - question: https://leetcode.com/explore/learn/card/fun-with-arrays/525/inserting-items-into-an-array/3253/
-- When arrays require inplace operation or moving the elements to the right, try to look for solutions
-  where you can iterate the array from the end instead of starting.
+- **When arrays require inplace operation or moving the elements to the right, try to look for solutions
+  where you can iterate the array from the end instead of starting.**
 - In this question, its easy to compare elements from the end and instead of looking for smaller element
-  we look for greater element and then insert it into final array. 
+  we look for greater element and then insert it into the final array
 - Time Complexity: O(n)
 - Space Complexity: O(1)
 
 **Code:** https://github.com/Ekta17/DataStructureAndAlgorithms/blob/main/src/main/java/arrays/MergeTwoSortedArray.java
 
+### **Inserting element at a given index**
+
+- Moving the elements to the right by one position can be done as following: Example we need to move the elements
+  starting position 2 to 1 position to right to make space of new element in the array at position 2:
+
+        // Say we want to insert the element at index 2.
+        // First, we will have to create space for the new element.
+        for (int i = intArray.length-1 ; i >= 2; i--){
+            // Shift each element one position to the right.
+            intArray[i + 1] = intArray[i];
+        }
+        // Now that we have created space for the new element,
+        // we can insert it at the required index.
+        intArray[2] = 30;
 
 
+### Deleting an element at a given index
+
+- Deleting the element from a given index which is not the last element in the array
+  requires extra work. We need to move the elements from that index till the end of array 
+  one position to the left. 
+
+        // Say we want to delete the element at index 1
+        for (int i = 2; i < length; i++) {
+            // Shift each element one position to the left
+            int_array[i - 1] = int_array[i];
+        }
+
+        // Again, the length needs to be consistent with the current
+        // state of the array.
+        length--; 
 
 
+### In Place modification of Array (concept)
+
+- Not using extra space to do the modification. 
+  It is this technique of working directly in the input Array, 
+  and not creating a new Array, that we call in-place. 
+- In-place Array operations are a big deal for programming interviews, 
+  where there is a big focus on minimising both time and space complexity of algorithms.
+- If we create a new array instead of modifying the original array then that means that 
+  other functions can no longer access the original data, 
+  because it has been overwritten.
 
