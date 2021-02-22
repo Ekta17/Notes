@@ -116,7 +116,7 @@ Note: Before performing any type of rotation, initialize **d %= array.length**
 
 **Code:** https://github.com/Ekta17/DataStructureAndAlgorithms/blob/main/src/main/java/arrays/MergeTwoSortedArray.java
 
-### **Inserting element at a given index**
+### Inserting element at a given index (concept)
 
 - Moving the elements to the right by one position can be done as following: Example we need to move the elements
   starting position 2 to 1 position to right to make space of new element in the array at position 2:
@@ -132,7 +132,7 @@ Note: Before performing any type of rotation, initialize **d %= array.length**
         intArray[2] = 30;
 
 
-### Deleting an element at a given index
+### Deleting an element at a given index (concept)
 
 - Deleting the element from a given index which is not the last element in the array
   requires extra work. We need to move the elements from that index till the end of array 
