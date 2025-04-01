@@ -31,8 +31,16 @@
     - reverse the array from 0 to (d-1)
     - reverse the array from d to (n-1)
     
-Note: Before performing any type of rotation, initialize **d %= array.length** 
-        to handle the case where length of array is less than d    
+**Special condition:**
+
+- Before performing any type of rotation, initialize **d %= array.length** to handle the case where length of array is less than d
+- When d >= arr.length, d %= arr.length ensures you're not doing extra rotations — because rotating n times just brings the array back to where it started.
+- **Example**: If the array has 5 elements and you want to rotate it 7 times to the left, rotating 7 times is the same as rotating 2 times (7 % 5 = 2), because after 5 rotations, the array comes back to its original position.
+- **Why is it needed?**
+    - Without this line, if you try to rotate the array more than its length (say, rotate a 5-element array by 7 positions), the code might:
+        - do unnecessary work (inefficient), 
+        - or even throw an error depending on how the logic is implemented.
+
 
 - Time Complexity: O(n)
 - Space Complexity: O(1)
