@@ -7,3 +7,11 @@
   - ```high - low``` ensures that you never exceed the max integer limit
   - Adding ```low``` back shifts the midpoint correctly within the range.
 - Memory trick - ***Mid is Low plus half the distance.***
+
+### **First occurrence of element in sorted array**
+- Check mid if its the element and then if its the first occurrence of the element 
+
+  🔹 ```if (x == arr[mid] && (mid == 0 || arr[mid-1] != x))```
+- If element in left side but not mid or there are more occurrences of element to the left side of mid
+    
+  🔹 ```if (arr[mid] >= x) -> then search from 0 to mid-1```
