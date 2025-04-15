@@ -15,3 +15,10 @@
 - If element in left side but not mid or there are more occurrences of element to the left side of mid
     
   🔹 ```if (arr[mid] >= x) -> then search from 0 to mid-1```
+
+### **Find Element in an infinite sorted array**
+- Exponentially increase `i` till `arr[i]` become greater than target
+
+- Now perform binary search between `i/2` and `i`
+
+  🔹 ```return binarySearch(arr, x, i/2, i)```
