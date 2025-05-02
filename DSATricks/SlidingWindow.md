@@ -105,7 +105,6 @@ for (int right = 0; right < s.length(); right++) {
     // Update maxLength
 }
 ```
-## Summary
 
 ## 🔁 Sliding Window Pattern Summary
 
