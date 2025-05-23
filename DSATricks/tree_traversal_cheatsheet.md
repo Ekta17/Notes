@@ -105,3 +105,71 @@ void bfs(TreeNode root) {
 - BFS is ideal for **level traversal**, **views**, and **shortest path**.
 - Use **print statements** to trace recursion or queue/stack contents during debugging.
 
+
+## 🌟 Tricks to Remember: Key Tree Problems
+
+### 🔁 Symmetric Tree (Mirror Check)
+
+**Problem**: [Symmetric Tree](https://leetcode.com/problems/symmetric-tree/)
+
+#### 🔑 Key Idea:
+Use BFS with a queue of **node pairs** to compare left and right subtree nodes in mirror order.
+
+#### 🧠 Tricks:
+- Enqueue two nodes at a time
+- Compare `left.value == right.value`
+- Enqueue their children in **mirrored order**:
+  - `left.leftChild` with `right.rightChild`
+  - `left.rightChild` with `right.leftChild`
+
+#### ✅ Template:
+```java
+Queue<TreeNode> q = new LinkedList<>();
+q.add(root.leftChild);
+q.add(root.rightChild);
+
+while (!q.isEmpty()) {
+    TreeNode left = q.poll();
+    TreeNode right = q.poll();
+
+    if (left == null && right == null) continue;
+    if (left == null || right == null || left.value != right.value) return false;
+
+    q.add(left.leftChild);
+    q.add(right.rightChild);
+    q.add(left.rightChild);
+    q.add(right.leftChild);
+}
+```
+
+---
+
+### 🌲 Height-Balanced BST from Sorted Array
+
+**Problem**: [Convert Sorted Array to Height Balanced BST](https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/)
+
+#### 🔑 Key Idea:
+Use **Divide and Conquer**: pick the middle element as root, build left/right trees recursively.
+
+#### 🧠 Tricks:
+- Always pick `mid = (left + right) / 2` as root
+- Recurse left half → left subtree
+- Recurse right half → right subtree
+- This is **DFS-style construction**, similar to **postorder**: build children before returning parent
+
+#### ✅ Template:
+```java
+TreeNode sortedArrayToBST(int[] nums) {
+    return build(nums, 0, nums.length - 1);
+}
+
+TreeNode build(int[] nums, int left, int right) {
+    if (left > right) return null;
+    int mid = left + (right - left) / 2;
+
+    TreeNode root = new TreeNode(nums[mid]);
+    root.leftChild = build(nums, left, mid - 1);
+    root.rightChild = build(nums, mid + 1, right);
+    return root;
+}
+```
