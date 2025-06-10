@@ -48,14 +48,43 @@ PriorityQueue<Integer> maxHeap = new PriorityQueue<>(Collections.reverseOrder())
 
 ## Heap Operations and Java Implementations
 
+```java
+class MinHeap {
+    int[] heap;
+    int size;
+    int capacity;
+
+    MinHeap(int capacity) {
+        this.capacity = capacity;
+        this.size = 0;
+        heap = new int[capacity];
+    }
+
+    int parent(int i) {
+        return (i - 1) / 2;
+    }
+
+    int left(int i) {
+        return 2 * i + 1;
+    }
+
+    int right(int i) {
+        return 2 * i + 2;
+    }
+    ...
+}
+```
+
+
 ### 1. Build Heap
 **Time Complexity:** `O(n)`
 
 ```java
 void buildHeap(int[] arr) {
-    int n = arr.length;
-    for (int i = (n - 2) / 2; i >= 0; i--) {
-        heapify(arr, n, i);
+    heap = arr;
+    size = arr.length;
+    for (int i = (size - 2) / 2; i >= 0; i--) {
+        minHeapify(i);
     }
 }
 ```
@@ -64,21 +93,21 @@ void buildHeap(int[] arr) {
 **Time Complexity:** `O(log n)`
 
 ```java
-void heapify(int[] arr, int n, int i) {
+void minHeapify(int i) {
     int smallest = i;
-    int left = 2*i + 1;
-    int right = 2*i + 2;
+    int l = left(i);
+    int r = right(i);
 
-    if (left < n && arr[left] < arr[smallest])
-        smallest = left;
-    if (right < n && arr[right] < arr[smallest])
-        smallest = right;
+    if (l < size && heap[l] < heap[smallest])
+        smallest = l;
+    if (r < size && heap[r] < heap[smallest])
+        smallest = r;
 
     if (smallest != i) {
-        int temp = arr[i];
-        arr[i] = arr[smallest];
-        arr[smallest] = temp;
-        heapify(arr, n, smallest);
+        int temp = heap[i];
+        heap[i] = heap[smallest];
+        heap[smallest] = temp;
+        minHeapify(smallest);
     }
 }
 ```
@@ -87,8 +116,18 @@ void heapify(int[] arr, int n, int i) {
 **Time Complexity:** `O(log n)`
 
 ```java
-void insert(PriorityQueue<Integer> heap, int val) {
-    heap.add(val);
+void insert(int key) {
+    if (size == capacity) return;
+    heap[size] = key;
+    int i = size;
+    size++;
+
+    while (i != 0 && heap[parent(i)] > heap[i]) {
+        int temp = heap[i];
+        heap[i] = heap[parent(i)];
+        heap[parent(i)] = temp;
+        i = parent(i);
+    }
 }
 ```
 
@@ -96,8 +135,8 @@ void insert(PriorityQueue<Integer> heap, int val) {
 **Time Complexity:** `O(1)`
 
 ```java
-int getMin(PriorityQueue<Integer> heap) {
-    return heap.peek();
+int getMin() {
+    return heap[0];
 }
 ```
 
@@ -105,16 +144,41 @@ int getMin(PriorityQueue<Integer> heap) {
 **Time Complexity:** `O(log n)`
 
 ```java
-int extractMin(PriorityQueue<Integer> heap) {
-    return heap.poll();
+int extractMin() {
+    if (size <= 0) return Integer.MAX_VALUE;
+    if (size == 1) return heap[--size];
+
+    int root = heap[0];
+    heap[0] = heap[--size];
+    minHeapify(0);
+    return root;
 }
 ```
 
 ### 6. Decrease Key
-- Not directly supported in `PriorityQueue`. Use a custom class with manual reordering or recreate the heap.
+**Time Complexity:** `O(log n)`
+
+```java
+void decreaseKey(int i, int newVal) {
+        heap[i] = newVal;
+        while (i != 0 && heap[parent(i)] > heap[i]) {
+            int temp = heap[i];
+            heap[i] = heap[parent(i)];
+            heap[parent(i)] = temp;
+            i = parent(i);
+        }
+    }
+```
 
 ### 7. Delete
-- Not directly supported in `PriorityQueue`. For custom heap, replace the element with last and call heapify.
+**Time Complexity:** `O(log n)`
+
+```java
+void deleteKey(int i) {
+        decreaseKey(i, Integer.MIN_VALUE);
+        extractMin();
+    }
+```
 
 ---
 
