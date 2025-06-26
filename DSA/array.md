@@ -20,10 +20,12 @@
 - Using reversal of the array we can achieve this. 
 
 1. **Rotations to Right**: [1,2,3,4], d = 1 --> [4,1,2,3]
+    - reverse the whole array
     - Divide the array into two parts and reverse each part: 
+    - `d %= nums.length` this is required to remove unnessary rotations when d > nums.length 
     - reverse the array from 0 to (d-1)
     - reverse the array from d to (n-1)
-    - now reverse the whole array
+    
 
 2. **Rotations to Left**: [1,2,3,4], d = 1 --> [2,3,4,1]
     - Reverse the whole array
